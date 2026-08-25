@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nest Motion Event Stream Monitor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="title-section">
+        <h1>🦅 Nest Motion Event Monitor</h1>
+        <p class="subtitle">Real-time decoupled event ingestion & streaming pipeline</p>
+      </div>
+
+      <div class="header-controls">
+        <div class="strategy-selector">
+          <label for="strategy-select">Queue Strategy:</label>
+          <select id="strategy-select">
+            <option value="lagging">Complete-but-Lagging (0 drops, queue buffers burst)</option>
+            <option value="dropping">Current-but-Dropping (bounded queue, drops oldest)</option>
+          </select>
+        </div>
+
+        <div class="connection-status">
+          <span class="status-dot" id="connection-dot"></span>
+          <span id="connection-label">Connecting...</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Global System Metrics Bar -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Ingestion Rate</div>
+        <div class="metric-value" id="val-ingest-rate">0 <span class="unit">ev/s</span></div>
+        <div class="metric-sub">Incoming from traffic sim</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Delivery Rate</div>
+        <div class="metric-value" id="val-delivery-rate">0 <span class="unit">ev/s</span></div>
+        <div class="metric-sub">WebSocket push to browser</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Queue Backlog</div>
+        <div class="metric-value" id="val-queue-size">0 <span class="unit">events</span></div>
+        <div class="metric-sub" id="val-queue-status-text">Buffer Stable</div>
+      </div>
+
+      <div class="metric-card" id="card-lag">
+        <div class="metric-label">Delivery Lag</div>
+        <div class="metric-value" id="val-lag">0.00 <span class="unit">sec</span></div>
+        <div class="metric-sub">Ingress-to-Browser delay</div>
+      </div>
+
+      <div class="metric-card" id="card-dropped">
+        <div class="metric-label">Dropped Events</div>
+        <div class="metric-value" id="val-dropped">0</div>
+        <div class="metric-sub">Overflown from buffer</div>
+      </div>
+    </section>
+
+    <!-- Strategy Behavior Banner -->
+    <div class="strategy-banner" id="strategy-banner">
+      <strong>Active Strategy Mode:</strong> <span id="banner-strategy-name">Complete-but-Lagging</span> — 
+      <span id="banner-strategy-desc">All events are preserved in queue. High burst traffic builds queue backlog and delivery lag, which drains after burst stops.</span>
+    </div>
+
+    <!-- Nests Overview -->
+    <main>
+      <div class="section-title">
+        <h2>Simulated Nest Cameras (12 Nests)</h2>
+        <span class="badge" id="active-nests-count">12 Active</span>
+      </div>
+
+      <div class="nests-grid" id="nests-grid">
+        <!-- Nest tiles generated dynamically via app.js -->
+      </div>
+    </main>
+
+    <!-- Real-time Event Stream Ticker Log -->
+    <section class="ticker-section">
+      <h3>Live Ingested Event Feed (Latest Events Delivered)</h3>
+      <div class="event-log" id="event-log">
+        <div class="log-placeholder">Waiting for motion events...</div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
