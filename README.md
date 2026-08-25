@@ -121,6 +121,7 @@ From running `npm run test:burst`:
 ├── simulator.js        # Traffic generator (Baseline & ~200 ev/s Burst modes)
 ├── test_burst.js       # Automated end-to-end burst benchmark suite
 ├── package.json        # Dependencies and execution scripts
+├── AI_TRANSCRIPT.md    # Summarized AI-assisted development transcript
 ├── README.md           # Instructions, metrics, & test results
 ├── DECISIONS.md        # Deep-dive architecture choices & trade-off rationale
 └── public/
@@ -128,3 +129,12 @@ From running `npm run test:burst`:
     ├── style.css       # Clean styling, dark theme, & metric state indicators
     └── app.js          # Client WebSocket stream, UI metrics renderer, & strategy toggle
 ```
+
+---
+
+## 🤖 AI-Assisted Development
+
+AI was used throughout the development process for requirement analysis, architecture exploration, implementation assistance, testing/debugging and final review.
+
+See [AI_TRANSCRIPT.md](https://chatgpt.com/c/AI_TRANSCRIPT.md) for the summarized AI-assisted development transcript.
+
